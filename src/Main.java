@@ -1,6 +1,4 @@
-import model.Olive;
-import model.OliveName;
-
+import model.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +14,21 @@ public class Main {
     public static void main(String[] args) {
 
         List<Olive> olives = new ArrayList<>();
-        olives.add(new Olive(OliveName.KALAMATA, 0x2E0854, 3));
-        olives.add(new Olive(OliveName.KALAMATA, 0x2E0854, 3));
-        olives.add(new Olive(OliveName.LIGURIAN, 0x000000, 3));
-        olives.add(new Olive(OliveName.LIGURIAN, 0x000000, 2));
-//        olives.add(new Olive("Yellow Olive", 0x000002, 1.5));
-//        olives.add(new Olive("Pure Purple Olive", 0x000003, 1.8512));
+        olives.add(new Kalamata());
+        olives.add(new Kalamata());
+        olives.add(new Ligurian());
+        olives.add(new Ligurian());
 
-        OlivePress press = new OlivePress();
-        double totalOil1 = press.getOil(olives);
+        Press press = new OlivePress(); //press is instance of Press interface, also an instance
+        // of OlivePress class, because OlivePress implements Press interface
+        press.setOil(5); //starting at 5 mL of oil
+        double totalOil = press.getOil(olives);
 
-//        NumberFormat number = NumberFormat.getNumberInstance();
-//        number.setMaximumFractionDigits(3);
-//        number.format(totalOil1);
+        NumberFormat number = NumberFormat.getInstance();
+        number.setMaximumFractionDigits(3);
 
-        System.out.println("Total olive oil: " + totalOil1);
+        System.out.println("---------------------------");
+        System.out.println("Total olive oil: " + number.format(totalOil) + " mL");
 
     }
 }
